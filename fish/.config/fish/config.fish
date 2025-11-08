@@ -1,3 +1,29 @@
+#############
+## Open in tmux
+###########
+
+if status --is-interactive
+    if type -q tmux
+        if not set -q TMUX
+            # Start the new tmux session
+            tmux
+        end
+    end
+end
+
+#############
+## Helpers
+###########
+
+function redo
+    history | head -n 1 | read -l cmd
+    eval $cmd
+end
+
+function sudolast
+    sudo (history --max=1 | head -n1)
+end
+
 function fish_prompt -d "Write out the prompt"
     # Managed by Starship
 end
